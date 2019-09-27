@@ -9,7 +9,7 @@ class MemTest extends Component {
       array: [],
       newArray: [],
       arraySize: 1,
-      renderRows: false,
+      rendered: false,
     };
     this.generateArray = this.generateArray.bind(this);
     this.swapArray = this.swapArray.bind(this);
@@ -27,14 +27,14 @@ class MemTest extends Component {
   swapArray(){
     this.setState({
       newArray: this.state.array,
-      renderRows: !this.state.renderRows
+      rendered: true,
     })
   }
   clearArray(){
     this.setState({
       array: [],
       newArray: [],
-      renderRows: false,
+      rendered: false
     })
   }
   componentDidMount() {
@@ -49,7 +49,6 @@ class MemTest extends Component {
         <Button variant="success"onClick={this.swapArray}>Run test</Button>
         <Button variant="danger"onClick={this.clearArray}>Reset all</Button>
         <p>Set array size: {this.state.array.length}</p>
-        <p>Rendering: {this.state.renderRows}</p>
         {
           <ul id="oldArray">
             {this.state.array.map((index, key) =>
@@ -57,13 +56,7 @@ class MemTest extends Component {
             }
           </ul>
         }
-        {this.state.renderRows &&
-          <ul id="newArray">
-            {this.state.array.map((index, key) =>
-            <li key={key}>{index}</li>)
-            }
-          </ul>
-        }
+            <p>Memory allocated: {this.state.rendered.toString()}</p>
     </div>
     );
   }
